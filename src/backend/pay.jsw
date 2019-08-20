@@ -1,0 +1,14 @@
+import wixPay from 'wix-pay-backend';
+
+export function createMyPayment(adoptedCorvid) {
+	if (adoptedCorvid.price < 5) { adoptedCorvid.price = 5 }
+	const paymentObject = {
+		items: [{
+			name: adoptedCorvid.name,
+			price: adoptedCorvid.price
+		}],
+		amount: adoptedCorvid.price * paymentObject.items.length
+	};
+	
+	return wixPay.createPayment(paymentObject)
+}

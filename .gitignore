@@ -1,0 +1,8 @@
+node_modules/
+.corvid/
+src/**/*.wix
+src/database/
+src/.metadata.json
+src/backend/authorization-config.json
+src/backend/credentials.js
+

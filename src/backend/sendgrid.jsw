@@ -1,0 +1,16 @@
+import sgMail from '@sendgrid/mail'
+import credentials from 'backend/credentials'
+
+export function sendEmail(to, subject, text) {
+	const { sendgridKey } = credentials
+	sgMail.setApiKey(sendgridKey)
+	
+	const message = {
+		to,
+		from: 'corvid@wix.com',
+		subject,
+		text
+	}
+	
+	return sgMail.send(message)
+}

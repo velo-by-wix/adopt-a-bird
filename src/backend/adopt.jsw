@@ -1,0 +1,21 @@
+import wixData from 'wix-data';
+import _ from 'lodash';
+
+export async function adoptACorvid(adopter, corvidId) {
+	const { items: corvidBirds } = await wixData.query('CorvidBirds').eq('_id', corvidId).include("adopter").find()
+	const corvid = _.head(corvidBirds)
+    console.log(corvid)
+	if (!corvid) {
+		console.log("error: Corvid does not exist")
+		return { error: 'Corvid does not exist' }
+	}
+
+	if (corvid.adopter.length > 0) {
+		console.log("error: Corvid already has a home :)", corvid.adopter)
+		return { error: 'Corvid already has a home :)' }
+	}
+
+	const { _id: adopterId } = await wixData.insert('Adopters', adopter)
+
+	return wixData.insertReference('CorvidBirds', 'adopter', corvidId, adopterId)
+}

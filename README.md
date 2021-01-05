@@ -1,3 +1,3 @@
-# Adopt a Corvid
+# Adopt a Bird
 
-A website created by Corvid by Wix for adopting Corvid birds
+A website created by Velo by Wix for adopting birds
